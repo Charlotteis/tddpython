@@ -61,3 +61,16 @@ class ItemValidationTest(FunctionalTest):
         # She is pleased to see that the error message dissapears
         error = self.get_error_element()
         self.assertFalse(error.is_displayed())
+
+        # She makes the same mistake
+        self.browser.get(self.server_url)
+        self.get_item_input_box().send_keys("\n")
+        error = self.get_error_element()
+        self.assertTrue(error.is_displayed())
+
+        # This time she clicks within the input box to clear the error
+        self.get_item_input_box().click()
+
+        # Again, she is pleased to see the error message dissapears
+        error = self.get_error_element()
+        self.assertFalse(error.is_displayed())
