@@ -6,11 +6,18 @@ User = get_user_model()
 from django.contrib.sessions.backends.db import SessionStore
 
 from .base import FunctionalTest
+from .server_tools import creates_session_on_server
+from .management.command.create_sessions import create_pre_authenticated_session
 
 
 class MyListsTest(FunctionalTest):
 
     def create_pre_authenticated_session(self, email):
+        if self.against_statging:
+            session_key = creates_session_on_server(self.server_host, email)
+        else:
+            session_key = creates_session_on_server(self.server_host, email)
+
         user = User.objects.create(email=email)
         session = SessionStore()
         session[SESSION_KEY] = user.pk
