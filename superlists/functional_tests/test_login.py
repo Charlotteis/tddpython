@@ -1,4 +1,5 @@
 import time
+from unittest import skip
 from selenium.webdriver.support.ui import WebDriverWait
 from .base import FunctionalTest
 
@@ -21,6 +22,7 @@ class LoginTest(FunctionalTest):
             lambda b: b.find_element_by_id(element_id)
         )
 
+    @skip
     def test_login_with_persona(self):
         # Edith goes to the awesome superlists site
         # And notices a "sign in" link for the first time.
