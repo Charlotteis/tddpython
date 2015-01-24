@@ -18,7 +18,7 @@ class LoginTest(FunctionalTest):
             time.sleep(0.5)
         self.fail("could not find window")
 
-    # @skip
+    @skip
     def test_login_with_persona(self):
         # Edith goes to the awesome superlists site
         # And notices a "sign in" link for the first time.
